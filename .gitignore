@@ -1,0 +1,12 @@
+# compilation/artifact files
+__pycache__/
+.egg-info/
+.coverage
+.mypy_cache/
+
+# editors
+.idea/
+.vscode/
+
+# filesystem artifacts
+.DS_Store

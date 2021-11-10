@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "domain-entity-service-template-python-fastapi-entity-example-service"
+version = "0.1.0a0"
+description = ""
+authors = []
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = {version = "0.70.*", extras = ["all"]}
+
+[tool.poetry.dev-dependencies]
+# Linters and Formatters should always float to the next version without restriction
+black = "*"
+flake8 = "*"
+ipython = "*"
+isort = "*"
+mypy = "*"
+pylint = "*"
+# Testing tools should probably float to the next version;
+# if it breaks, get compatible with the new version
+pytest = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
