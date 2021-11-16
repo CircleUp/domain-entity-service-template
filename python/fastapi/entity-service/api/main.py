@@ -26,7 +26,7 @@ health_router = APIRouter(routes=[get_service_health_route])
 app.include_router(health_router)
 
 
-def main():
+def main():  # pylint: disable=missing-function-docstring
     uvicorn.run("api.main:app", host="0.0.0.0", port=8080)
 
 
