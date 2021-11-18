@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from decimal import Decimal
 from enum import Enum
-from typing import Set
+from typing import List, Optional, Set
 
 import pydantic
 
@@ -29,7 +29,7 @@ class Entity(pydantic.BaseModel):  # pylint: disable=no-member
         validate_assignment = True
 
     entity_id: pydantic.UUID4
-    related_entity_id: pydantic.UUID4
+    related_entity_id: Optional[pydantic.UUID4]
     foo_value: FooValueObject
     # Set gives us a way to have an immutable collection, meaning you cannot update `bar_values`
     # without reassigning to a new Set, which triggers the `validate_bar_values_count` validator
@@ -103,4 +103,14 @@ class BarValueObject(str, Enum):
     EPSILON = "epsilon"
 
 
+class EntityList(pydantic.BaseModel):
+    class Config:
+        allow_mutation = False
+
+    brands: List[Entity]
+    page: int
+    size: int
+
+
 Entity.update_forward_refs()
+EntityList.update_forward_refs()
