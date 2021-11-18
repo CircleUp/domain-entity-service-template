@@ -7,7 +7,7 @@ from typing import List, Optional, Set
 import pydantic
 
 
-class Entity(pydantic.BaseModel):  # pylint: disable=no-member
+class Entity(pydantic.BaseModel):
     """Entity is the top-level domain entity for the aggregate root
 
     A domain entity has a business domain meaning outside of a given service's
@@ -39,7 +39,13 @@ class Entity(pydantic.BaseModel):  # pylint: disable=no-member
 
     @classmethod
     @property
-    def MAX_B_VALUE_COUNT(cls):  # pylint: disable=invalid-name,missing-function-docstring
+    def MAX_BAR_VALUE_COUNT(cls):  # pylint: disable=invalid-name
+        """MAX_B_VALUE_COUNT is set based on endless user testing which has revealed the
+        number of bar values which create optimal user experience due to reasons.
+
+        This limit is just an example of some arbitrary business rule, which in turn
+        means that there is a limitation on valid entity state that must be maintained.
+        """
         return 3
 
     @pydantic.validator("bar_values")
@@ -53,15 +59,13 @@ class Entity(pydantic.BaseModel):  # pylint: disable=no-member
         Non-pydantic classes would use getters and setters to control access to private attributes,
         and keep validation logic in the setters.
         """
-        if len(bar_values) > cls.MAX_B_VALUE_COUNT:
-            # this limit is just an example of some arbitrary business rule
-            # regarding valid state that must be maintained
-            raise ValueError(f"Entity cannot have more than {cls.MAX_B_VALUE_COUNT} bar values")
+        if len(bar_values) > cls.MAX_BAR_VALUE_COUNT:
+            raise ValueError(f"Entity cannot have more than {cls.MAX_BAR_VALUE_COUNT} bar values")
 
         return bar_values
 
 
-class FooValueObject(pydantic.BaseModel):  # pylint: disable=no-member
+class FooValueObject(pydantic.BaseModel):
     """FooValueObject is a value object which can be assigned to an Entity
 
     A value object is an immutable collection of attributes with no identity.

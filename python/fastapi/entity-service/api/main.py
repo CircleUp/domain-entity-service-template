@@ -46,6 +46,7 @@ API_PREFIX_V0 = "/api/v0"
 API_V0_ENTITIES_PATH = API_PREFIX_V0 + "/entities"
 API_V0_ENTITIES_ID_PATH = API_PREFIX_V0 + "/entities/{entity_id}"
 
+# FastAPI does not yet support introspection on class-based handlers.
 # Using APIRoute/APIRouter instead of decorators allows our handlers to be
 # members of a class, which allows us to inject the Service as a dependency.
 # The cost is some extra boilerplate config like declaring the response model,
